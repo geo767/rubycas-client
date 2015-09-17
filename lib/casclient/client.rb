@@ -270,7 +270,7 @@ module CASClient
     def submit_data_to_cas(uri, data)
       uri = URI.parse(uri) unless uri.kind_of? URI
       req = Net::HTTP::Post.new(uri.path)
-      req.set_form_data(data, ';')
+      req.form_data = data
       https = https_connection(uri)
       https.start {|conn| conn.request(req) }
     end
